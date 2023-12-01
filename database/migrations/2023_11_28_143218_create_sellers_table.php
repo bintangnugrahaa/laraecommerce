@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('payment_method')->nullable();
             $table->string('payment_email')->nullable();
             $table->timestamps();
+            $table->timestamps();
         });
     }
 
