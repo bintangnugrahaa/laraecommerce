@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -42,5 +43,11 @@ class AdminController extends Controller
             session()->flash('fail', 'Incorrect credentials');
             return redirect()->route('admin.login');
         }
+    }
+
+    public function logoutHandler(Request $request){
+        Auth::guard('admin')->logout();
+        session()->flash('fail', 'You are logged out');
+        return redirect()->route('admin.login');
     }
 }
