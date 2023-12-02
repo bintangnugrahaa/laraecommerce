@@ -34,7 +34,7 @@
 										<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
 									</div>
 								</div>
-								@error('login_id')
+								@error('password')
 									<div class="d-block text-danger" style="margin-top: -25px; margin-bottom: 15px;">
 										{{ $message }}
 									</div>
