@@ -8,7 +8,7 @@
     <h6 class="mb-20">
         Enter your email address to reset your password
     </h6>
-    <form action="" method="POST">
+    <form action="{{ route('admin.send-password-reset-link') }}" method="POST">
         @csrf
         @if (Session::get('fail'))
             {{ Session::get('fail') }}
