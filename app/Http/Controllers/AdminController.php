@@ -74,21 +74,25 @@ class AdminController extends Controller
         $token = base64_encode(Str::random(64));
 
         // Check if there is on existing reset password token
-        $oldToken = DB::table('password_reset_tokens')->where(['email'=>$request->email, 'guard'=>constGuard::ADMIN])->first();
+        $oldToken = DB::table('password_reset_tokens')
+                    ->where(['email'=>$request->email, 'guard'=>constGuard::ADMIN])
+                    ->first();
 
         if($oldToken){
             // Update token
             DB::table('password_reset_tokens')
-            ->where(['email'=>$request->email,'guard'=>constGuard::ADMIN])
-            ->update([
-                'token'=>$token,
-                'created_at'=>Carbon::now()
+                ->where(['email'=>$request->email,'guard'=>constGuard::ADMIN])
+                ->update([
+                    'token'=>$token,
+                    'created_at'=>Carbon::now()
         ]);
         }else{
             // Add new token
             DB::table('password_reset_tokens')->insert([
                 'email'=>$request->email,
-                'guard'=>constGuard::ADMIN,'token'=>$token,'created_at'=>Carbon::now()
+                'guard'=>constGuard::ADMIN,
+                'token'=>$token,
+                'created_at'=>Carbon::now()
         ]);
         }
 
